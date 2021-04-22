@@ -1,0 +1,41 @@
+<configuration>
+
+	<!-- VARIABLE ASOCIADA A LA FECHA -->
+	<timestamp key="logDateVar" datePattern="dd-MM-yyyy" />
+	
+	<!-- ROLLINGFILEAPPENDER -->
+	<appender name="EverisLogback1Lirr"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		
+		<!-- NOMBRE DEL FICHERO -->
+		
+		<file>C://dev//WorkspaceFormacionEveris//EverisLogback1Lirr//logs//elb1LIRR-${logDateVar}.log</file>
+		
+		<!-- GESTIÓN DEL FICHERO -->
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>C://dev//WorkspaceFormacionEveris//EverisLogback1Lirr//logs//elb1LIRR-${logDateVar}.%i.logDual.zip</fileNamePattern>
+			
+			<!-- CANTIDAD DE FICHEROS -->
+			<minIndex>1</minIndex>
+			<maxIndex>3</maxIndex>
+		</rollingPolicy>
+
+		<!-- TAMAÑO MÁXIMO DEL FICHERO DE LOG -->
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>50KB</maxFileSize>
+		</triggeringPolicy>
+		
+		<!-- PATRÓN DEL FICHERO DE LOG -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - [%method] - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- LOGGER ROOT -->
+	<root level="debug">
+		<appender-ref ref="EverisLogback1Lirr" />
+	</root>
+
+</configuration>
